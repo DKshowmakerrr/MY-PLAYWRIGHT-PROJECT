@@ -30,7 +30,19 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    // ⚙️ Dùng Chrome thật (Google Chrome) thay vì Chromium mặc định
+    channel: 'chrome',
+    headless: false, // để xem trình duyệt chạy (đặt true nếu chạy CI)
+    viewport: { width: 1280, height: 720 },
+    ignoreHTTPSErrors: true,
+    actionTimeout: 0, // không giới hạn thời gian mỗi hành động
+    baseURL: 'https://example.com', // 🔹 thay bằng URL thật của bạn
+
+    // 🧩 Lưu lại thông tin khi test fail
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+    trace: 'retain-on-failure',
+    // trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
@@ -40,15 +52,15 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
     // {
@@ -78,4 +90,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-
