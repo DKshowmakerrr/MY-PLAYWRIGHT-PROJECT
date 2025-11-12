@@ -23,7 +23,7 @@
 
 // Locator là lazy → nó chưa thực sự query element cho đến khi bạn thực hiện hành động (click(), fill(), textContent(), etc.).
 const { BasePage } = require('./base.page');
-class TextboxPage extends BasePage {
+class TextBoxPage extends BasePage {
   constructor(page) {
     super(page); //gọi constructor của basepage
     this.fullnameInput = page.locator('#userName');
@@ -38,7 +38,13 @@ class TextboxPage extends BasePage {
   }
 
   async goto() {
-    await page.goto('https://demoqa.com/text-box');
+    await this.page.route('**/*', (route) => {
+      const url = route.request().url();
+      if (/ads|doubleclick|googlesyndication/.test(url)) return route.abort();
+      route.continue();
+    });
+    await this.page.goto('https://demoqa.com/text-box'), { waitUntil: 'domcontentloaded' };
+    // timeout: 60000;
   }
 
   async submit(fullname, email, currentAddress, permanentAddress) {
@@ -50,4 +56,4 @@ class TextboxPage extends BasePage {
   }
 }
 
-module.exports = { TextboxPage };
+module.exports = { TextBoxPage };

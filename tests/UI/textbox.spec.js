@@ -7,13 +7,27 @@
 // Kiểm tra kết quả (assert)
 
 // Không chứa locator hay thao tác trực tiếp với element (ngoại trừ test rất nhỏ)
-
 const { test, expect } = require('@playwright/test');
 const { TextBoxPage } = require('../../pages/textbox.page');
-const { assert } = require('console');
 
-test('Fullname input should be enabled', async ({ page }) => {
-  const textboxPage = new TextBoxPage();
+let textboxPage;
+test.beforeEach(async ({ page }) => {
+  textboxPage = new TextBoxPage(page);
   await textboxPage.goto();
+});
+
+test('Fullname input should be enabled', async () => {
   await textboxPage.isElementEnabled(textboxPage.fullnameInput);
+});
+
+test('Email input should be enabled', async () => {
+  await textboxPage.isElementEnabled(textboxPage.emailInput);
+});
+
+test('Current Address input should be enabled', async () => {
+  await textboxPage.isElementEnabled(textboxPage.currentAddressInput);
+});
+
+test('Permanent address input should be enabled', async () => {
+  await textboxPage.isElementEnabled(textboxPage.permanentAddressInput);
 });

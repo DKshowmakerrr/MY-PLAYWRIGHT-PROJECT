@@ -32,7 +32,7 @@ export default defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     // ⚙️ Dùng Chrome thật (Google Chrome) thay vì Chromium mặc định
     channel: 'chrome',
-    headless: false, // để xem trình duyệt chạy (đặt true nếu chạy CI)
+    headless: true, // để xem trình duyệt chạy (đặt true nếu chạy CI)
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     actionTimeout: 0, // không giới hạn thời gian mỗi hành động
@@ -42,6 +42,8 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
+    timeout: 60000,
+
     // trace: 'on-first-retry',
   },
 

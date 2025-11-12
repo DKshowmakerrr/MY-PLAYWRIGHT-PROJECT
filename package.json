@@ -8,6 +8,7 @@
     "test:api": "npx playwright test tests/api",
     "test:report": "npx playwright show-report",
     "test:headed": "npx playwright test --headed",
+    "test:headless": "npx playwright test --headless",
     "test:chrome": "npx playwright test --project=chromium",
     "test:firefox": "npx playwright test --project=firefox",
     "test:safari": "npx playwright test --project=webkit",
