@@ -31,3 +31,11 @@ test('Current Address input should be enabled', async () => {
 test('Permanent address input should be enabled', async () => {
   await textboxPage.isElementEnabled(textboxPage.permanentAddressInput);
 });
+
+test('Submit button should be enabled', async () => {
+  await textboxPage.isElementEnabled(textboxPage.submitButton);
+});
+
+test('Submit data successfully', async () => {
+  await textboxPage.submit('dat nguyen', 'dat.nguyen@gmail.com', 'ABC', 'DEF');
+});
