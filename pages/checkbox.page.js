@@ -23,18 +23,11 @@
 
 // Locator là lazy → nó chưa thực sự query element cho đến khi bạn thực hiện hành động (click(), fill(), textContent(), etc.).
 const { BasePage } = require('./base.page');
-class TextBoxPage extends BasePage {
+class CheckBoxPage extends BasePage {
   constructor(page) {
     super(page); //gọi constructor của basepage
-    this.fullnameInput = page.locator('#userName');
-    this.emailInput = page.locator('#userEmail');
-    this.currentAddressInput = page.locator('#currentAddress');
-    this.permanentAddressInput = page.locator('#permanentAddress');
-    this.submitButton = page.locator('#submit');
-    this.Name = page.locator('#name');
-    this.Email = page.locator('#email');
-    this.currentAddress = page.locator('#currentAddress');
-    this.permanentAddress = page.locator('#permanentAddress');
+    this.expandAllButton = page.getByTitle('Expand all');
+    this.collapseAllButton = page.getByTitle('Collapse all');
   }
 
   async goto() {
@@ -43,11 +36,11 @@ class TextBoxPage extends BasePage {
       if (/ads|doubleclick|googlesyndication/.test(url)) return route.abort();
       route.continue();
     });
-    await this.page.goto('https://demoqa.com/text-box'), { waitUntil: 'domcontentloaded' };
+    await this.page.goto('https://demoqa.com/checkbox'), { waitUntil: 'domcontentloaded' };
     // timeout: 60000;
   }
 
-  async submit(fullname, email, currentAddress, permanentAddress) {
+  async click(fullname, email, currentAddress, permanentAddress) {
     await this.fullnameInput.fill(fullname);
     await this.emailInput.fill(email);
     await this.currentAddressInput.fill(currentAddress);

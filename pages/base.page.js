@@ -12,6 +12,10 @@ class BasePage {
   async isElementVisible(locator) {
     await expect(locator).toBeVisible();
   }
+
+  async isElementChecked(locator) {
+    await expect(locator).toBeChecked();
+  }
 }
 
 module.exports = { BasePage };
