@@ -28,6 +28,28 @@ class CheckBoxPage extends BasePage {
     super(page); //gọi constructor của basepage
     this.expandAllButton = page.getByTitle('Expand all');
     this.collapseAllButton = page.getByTitle('Collapse all');
+    this.allNodes = page.locator('.rct-node');
+    // in ra tất cả id của node ở console:
+    // document.querySelectorAll('[id^="tree-node"]').forEach((el) => {
+    //   console.log(el.id);
+    // });
+    this.homeNode = page.locator('#tree-node-home');
+    this.desktopNode = page.locator('#tree-node-desktop');
+    this.notesNode = page.locator('#tree-node-notes');
+    this.commandsNode = page.locator('#tree-node-commands');
+    this.documentsNode = page.locator('#tree-node-documents');
+    this.workspaceNode = page.locator('#tree-node-workspace');
+    this.reactNode = page.locator('#tree-node-react');
+    this.angularNode = page.locator('#tree-node-angular');
+    this.veuNode = page.locator('#tree-node-veu');
+    this.officeNode = page.locator('#tree-node-office');
+    this.publicNode = page.locator('#tree-node-public');
+    this.privateNode = page.locator('#tree-node-private');
+    this.classifiedNode = page.locator('#tree-node-classified');
+    this.generalNode = page.locator('#tree-node-general');
+    this.downloadsNode = page.locator('#tree-node-downloads');
+    this.wordNode = page.locator('#tree-node-wordFile');
+    this.excelNode = page.locator('#tree-node-excelFile');
   }
 
   async goto() {
@@ -40,13 +62,17 @@ class CheckBoxPage extends BasePage {
     // timeout: 60000;
   }
 
-  async click(fullname, email, currentAddress, permanentAddress) {
-    await this.fullnameInput.fill(fullname);
-    await this.emailInput.fill(email);
-    await this.currentAddressInput.fill(currentAddress);
-    await this.permanentAddressInput.fill(permanentAddress);
-    await this.submitButton.click();
+  async clickExpandAll() {
+    await this.expandAllButton.click();
+  }
+
+  async clickCollapseAll() {
+    await this.collapseAllButton.click();
+  }
+
+  async checkNode(locator) {
+    await locator.check();
   }
 }
 
-module.exports = { TextBoxPage };
+module.exports = { CheckBoxPage };
