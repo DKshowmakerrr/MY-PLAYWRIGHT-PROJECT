@@ -25,7 +25,7 @@
 const { assert } = require('console');
 const { BasePage } = require('./base.page');
 const { expect } = require('@playwright/test');
-class CheckBoxPage extends BasePage {
+class RadioButtonPage extends BasePage {
   constructor(page) {
     super(page); //gọi constructor của basepage
     this.expandAllButton = page.getByTitle('Expand all');
@@ -62,8 +62,6 @@ class CheckBoxPage extends BasePage {
     this.commandsNode = page.locator(
       "//label[@for='tree-node-commands']//span[@class='rct-checkbox']//*[name()='svg']"
     );
-
-    this.bottomText = page.locator("//div[@id='result']//span");
   }
 
   async goto() {
@@ -72,7 +70,7 @@ class CheckBoxPage extends BasePage {
       if (/ads|doubleclick|googlesyndication/.test(url)) return route.abort();
       route.continue();
     });
-    await this.page.goto('https://demoqa.com/radio-button'), { waitUntil: 'domcontentloaded' };
+    await this.page.goto('https://demoqa.com/checkbox'), { waitUntil: 'domcontentloaded' };
     // timeout: 60000;
   }
 
@@ -97,12 +95,6 @@ class CheckBoxPage extends BasePage {
   async verifyCheckedSVG(locator) {
     await expect(locator).toContainClass('rct-icon rct-icon-uncheck');
   }
-
-  //kiểm tra text hiển thị khi select node
-  async verifyText(svgLocator) {
-    const title = svgLocator.locator("xpath=ancestor::label//span[@class='rct-title']");
-    await expect(this.bottomText).toContainText(await title.textContent());
-  }
 }
 
-module.exports = { CheckBoxPage };
+module.exports = { RadioButtonPage };
