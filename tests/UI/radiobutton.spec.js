@@ -8,14 +8,13 @@
 
 // Không chứa locator hay thao tác trực tiếp với element (ngoại trừ test rất nhỏ)
 const { test, expect } = require('@playwright/test');
-const { CheckBoxPage } = require('../../pages/checkbox.page');
 const { RadioButtonPage } = require('../../pages/radiobutton.page');
 
 /** @type {import('../../pages/checkbox.page').RadioButtonPage} */
 let checkBox;
 test.beforeEach(async ({ page }) => {
-  checkBox = new RadioButtonPage(page);
-  await checkBox.goto();
+  radio = new RadioButtonPage(page);
+  await radio.goto();
 });
 
 test('Expand All should show exactly all nodes in the tree', async () => {

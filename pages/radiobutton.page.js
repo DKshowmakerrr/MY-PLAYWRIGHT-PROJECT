@@ -28,40 +28,6 @@ const { expect } = require('@playwright/test');
 class RadioButtonPage extends BasePage {
   constructor(page) {
     super(page); //gọi constructor của basepage
-    this.expandAllButton = page.getByTitle('Expand all');
-    this.collapseAllButton = page.getByTitle('Collapse all');
-    this.allNodes = page.locator('.rct-node');
-    // in ra tất cả id của node ở console:
-    // document.querySelectorAll('[id^="tree-node"]').forEach((el) => {
-    //   console.log(el.id);
-    // });
-    this.homeNode = page.locator('#tree-node-home');
-    this.desktopNode = page.locator("//label[@for='tree-node-desktop']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.notesNode = page.locator("//label[@for='tree-node-notes']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.documentsNode = page.locator(
-      "//label[@for='tree-node-documents']//span[@class='rct-checkbox']//*[name()='svg']"
-    );
-    this.workspaceNode = page.locator(
-      "//label[@for='tree-node-workspace']//span[@class='rct-checkbox']//*[name()='svg']"
-    );
-    this.reactNode = page.locator("//label[@for='tree-node-react']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.angularNode = page.locator("//label[@for='tree-node-angular']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.veuNode = page.locator("//label[@for='tree-node-veu']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.officeNode = page.locator("//label[@for='tree-node-office']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.officeNode = page.locator("//label[@for='tree-node-public']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.privateNode = page.locator("//label[@for='tree-node-private']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.classifiedNode = page.locator(
-      "//label[@for='tree-node-classified']//span[@class='rct-checkbox']//*[name()='svg']"
-    );
-    this.generalNode = page.locator("//label[@for='tree-node-general']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.downloadsNode = page.locator(
-      "//label[@for='tree-node-downloads']//span[@class='rct-checkbox']//*[name()='svg']"
-    );
-    this.wordNode = page.locator("//label[@for='tree-node-word']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.excelNode = page.locator("//label[@for='tree-node-excel']//span[@class='rct-checkbox']//*[name()='svg']");
-    this.commandsNode = page.locator(
-      "//label[@for='tree-node-commands']//span[@class='rct-checkbox']//*[name()='svg']"
-    );
   }
 
   async goto() {
@@ -70,30 +36,8 @@ class RadioButtonPage extends BasePage {
       if (/ads|doubleclick|googlesyndication/.test(url)) return route.abort();
       route.continue();
     });
-    await this.page.goto('https://demoqa.com/checkbox'), { waitUntil: 'domcontentloaded' };
+    await this.page.goto('https://demoqa.com/radio-button'), { waitUntil: 'domcontentloaded' };
     // timeout: 60000;
-  }
-
-  async clickExpandAll() {
-    await this.expandAllButton.click();
-  }
-
-  async clickCollapseAll() {
-    await this.collapseAllButton.click();
-  }
-
-  async clickNode(locator) {
-    await locator.click();
-  }
-
-  //kiểm tra xem node svg đã check
-  async verifyCheckedSVG(locator) {
-    await expect(locator).toContainClass('rct-icon rct-icon-check');
-  }
-
-  //kiểm tra xem node svg chưa check
-  async verifyCheckedSVG(locator) {
-    await expect(locator).toContainClass('rct-icon rct-icon-uncheck');
   }
 }
 

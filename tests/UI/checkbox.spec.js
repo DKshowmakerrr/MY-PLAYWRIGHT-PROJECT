@@ -32,7 +32,7 @@ test('mark notes and commands as checked and result in desktop checked', async (
   await checkBox.verifyText(checkBox.commandsNode);
 });
 
-test('Collapse All should hid exactly one node in the tree', async () => {
+test('Collapse All should hide exactly one node in the tree', async () => {
   await checkBox.clickCollapseAll();
   await checkBox.elementCount(checkBox.allNodes, 1);
 });

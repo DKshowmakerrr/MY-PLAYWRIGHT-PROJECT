@@ -72,7 +72,7 @@ class CheckBoxPage extends BasePage {
       if (/ads|doubleclick|googlesyndication/.test(url)) return route.abort();
       route.continue();
     });
-    await this.page.goto('https://demoqa.com/radio-button'), { waitUntil: 'domcontentloaded' };
+    await this.page.goto('https://demoqa.com/checkbox'), { waitUntil: 'domcontentloaded' };
     // timeout: 60000;
   }
 
