@@ -28,6 +28,10 @@ const { expect } = require('@playwright/test');
 class RadioButtonPage extends BasePage {
   constructor(page) {
     super(page); //gọi constructor của basepage
+    this.yesRadio = page.locator('#yesRadio');
+    this.impressiveRadio = page.locator('#impressiveRadio');
+    this.noRadio = page.locator('#noRadio');
+    this.text = page.locator('.mt-3');
   }
 
   async goto() {

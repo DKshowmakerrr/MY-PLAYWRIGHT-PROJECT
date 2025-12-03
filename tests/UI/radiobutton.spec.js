@@ -10,26 +10,15 @@
 const { test, expect } = require('@playwright/test');
 const { RadioButtonPage } = require('../../pages/radiobutton.page');
 
-/** @type {import('../../pages/checkbox.page').RadioButtonPage} */
-let checkBox;
+/** @type {import('../../pages/radiobutton.page').RadioButtonPage} */
+let radio;
 test.beforeEach(async ({ page }) => {
   radio = new RadioButtonPage(page);
   await radio.goto();
 });
 
-test('Expand All should show exactly all nodes in the tree', async () => {
-  await checkBox.clickExpandAll();
-  await checkBox.elementCount(checkBox.allNodes, 17);
-});
-
-test('mark notes and commands as checked and result in desktop checked', async () => {
-  await checkBox.clickNode(checkBox.notesNode);
-  await checkBox.clickNode(checkBox.commandsNode);
-  await checkBox.verifyCheckedSVG(checkBox.desktopNode);
-  await 
-});
-
-test('Collapse All should hid exactly one node in the tree', async () => {
-  await checkBox.clickCollapseAll();
-  await checkBox.elementCount(checkBox.allNodes, 1);
+test('Check default status of all checkboxes', async () => {
+  await radio.elementDisabled(radio.noRadio);
+  await radio.isElementEnabled(radio.yesRadio);
+  await radio.isElementEnabled(radio.impressiveRadio);
 });

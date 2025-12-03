@@ -28,6 +28,10 @@ class BasePage {
   async elementUnChecked(locator) {
     await expect(locator).not.toBeChecked();
   }
+
+  async elementDisabled(locator) {
+    await expect(locator).toBeDisabled();
+  }
 }
 
 module.exports = { BasePage };
